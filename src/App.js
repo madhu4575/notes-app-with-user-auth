@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react'
+import NavBar from './components/NavBar'
+import './App.css'
+import { isLoggedIn, startGetUser } from './actions/addUser'
+import { useDispatch } from 'react-redux'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+const App = (props) => {
+  // const [userLoggedIn,setUserLoggedIn] = useState(false)
+
+  // const handleAuth = () => {
+  //   setUserLoggedIn(!userLoggedIn)
+  // }
+
+  // useEffect(() => {
+  //   if(localStorage.getItem('token')){
+  //   handleAuth()
+  //   }
+  // },[])
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(localStorage.getItem('token')){
+      console.log('dispatch')
+      dispatch(startGetUser())
+      // handleAuth()
+      dispatch(isLoggedIn(true))
+    }
+  },[])
+
+  return(
+    <div className='user'>
+      <h1 >User Auth</h1>
+      <div className='nav'><NavBar /*userLoggedIn={userLoggedIn} handleAuth={handleAuth}*/ /></div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

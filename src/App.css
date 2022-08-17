@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.user h1{
+  background-color: coral;
+  color: #333;
+  padding: 10px 10px;
+}
+
